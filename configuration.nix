@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 {
   imports =
-    [ 
-      ./hardware-configuration.nix
-    ];
+  [ 
+    ./hardware-configuration.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -43,6 +43,11 @@
   services.printing.enable = true;
 
   hardware.pulseaudio.enable = false;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -67,16 +72,33 @@
 
   programs.firefox.enable = true;
 
+  programs.ssh = {
+    startAgent = true;
+    enableAskPassword = true;
+    askPassword = pkgs.lib.mkForce "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     wezterm
     vim 
     git
+
+    kdePackages.ksshaskpass
+
+    neofetch
+
+    discord
+    obsidian
+
+    nerd-fonts.jetbrains-mono
   ];
 
-  # Rules for changing this line:
-  # 1) change this line only if you know what you're doing
-  # 2) you don't know what you're doing
+  environment.variables = {
+    SSH_ASKPASS_REQUIRE = "prefer";
+  };
+
+  # Just don't 
   system.stateVersion = "24.11"; # Did you read the comment?
 }
