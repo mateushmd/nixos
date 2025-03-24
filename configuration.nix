@@ -96,6 +96,7 @@
     zip
     unzip    
     fzf
+    bat
 
     kdePackages.ksshaskpass
 
