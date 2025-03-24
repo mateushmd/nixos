@@ -42,7 +42,7 @@
 
   services.printing.enable = true;
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -78,15 +78,27 @@
     askPassword = pkgs.lib.mkForce "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
   };
 
+  programs.starship = {
+    enable = true;
+    
+    settings = {
+      
+    };
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     wezterm
+
     vim 
     git
+    zip
+    unzip    
 
     kdePackages.ksshaskpass
 
+    eza
     neofetch
 
     discord
