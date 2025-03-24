@@ -95,6 +95,7 @@
     git
     zip
     unzip    
+    fzf
 
     kdePackages.ksshaskpass
 
