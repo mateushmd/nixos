@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 {
   imports =
   [ 
@@ -92,6 +92,7 @@
     wezterm
 
     vim 
+    inputs.nixvim.packages.${pkgs.system}.default 
     git
     zip
     unzip    
@@ -112,6 +113,8 @@
   environment.variables = {
     SSH_ASKPASS_REQUIRE = "prefer";
   };
+
+  environment.localBinInPath = true;
 
   # Just don't 
   system.stateVersion = "24.11"; # Did you read the comment?

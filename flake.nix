@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixvim.url = "github:mateushmd/nixvim";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
