@@ -100,6 +100,7 @@
     bat
 
     kdePackages.ksshaskpass
+    gparted
 
     eza
     neofetch
