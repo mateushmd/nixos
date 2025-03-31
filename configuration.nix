@@ -109,11 +109,12 @@
 
     discord
     obsidian
+    kdePackages.kcalc
 
     nerd-fonts.jetbrains-mono
   ];
 
-  environment.variables = {
+  environment.sessionVariables = {
     SSH_ASKPASS_REQUIRE = "prefer";
   };
 
