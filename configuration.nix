@@ -2,6 +2,7 @@
 {
   imports =
   [ 
+    inputs.home-manager.nixosModules.default
     ./hardware-configuration.nix
   ];
 
@@ -64,6 +65,13 @@
     packages = with pkgs; [
       kdePackages.kate
     ];
+  };
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      "mateus" = import ./home.nix;
+    };
   };
 
   nix.settings.experimental-features = [
