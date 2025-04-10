@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, ... }:
+{ self, config, inputs, pkgs, ... }:
 {
   imports =
   [ 
@@ -68,7 +68,7 @@
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs self; };
     users = {
       "mateus" = import ./home.nix;
     };
@@ -108,7 +108,7 @@
     fzf
     bat
     gitmoji-cli
-
+    
     kdePackages.ksshaskpass
     gparted
 
@@ -119,6 +119,9 @@
     obsidian
     kdePackages.kcalc
 
+    jdk
+    iverilog
+
     nerd-fonts.jetbrains-mono
   ];
 
@@ -127,6 +130,12 @@
   };
 
   environment.localBinInPath = true;
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 10d";
+  };
 
   # Just don't 
   system.stateVersion = "24.11"; # Did you read the comment?
