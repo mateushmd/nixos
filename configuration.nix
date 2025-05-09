@@ -119,7 +119,9 @@
 
     discord
     obsidian
+    anydesk
     kdePackages.kcalc
+    floorp
 
     jdk
     iverilog
