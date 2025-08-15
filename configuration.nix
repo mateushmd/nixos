@@ -2,7 +2,6 @@
 {
   imports =
   [ 
-    inputs.home-manager.nixosModules.default
     ./hardware-configuration.nix
   ];
 
@@ -30,7 +29,10 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    libinput.enable = true;
+  };
 
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
@@ -69,31 +71,31 @@
     ];
   };
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs self; };
-    users = {
-      "mateus" = import ./home.nix;
-    };
-  };
-
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
 
-  programs.firefox.enable = true;
+  programs = {
+    firefox.enable = true;
 
-  programs.ssh = {
-    startAgent = true;
-    enableAskPassword = true;
-    askPassword = pkgs.lib.mkForce "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
-  };
+    ssh = {
+      startAgent = true;
+      enableAskPassword = true;
+      askPassword = pkgs.lib.mkForce "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
+    };
 
-  programs.starship = {
-    enable = true;
-    
-    settings = {
-      
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      extraCompatPackages = with pkgs; [
+        proton-ge-bin
+      ];
+    };
+
+    starship = {
+      enable = true;
+      settings = { };
     };
   };
 
@@ -116,15 +118,18 @@
 
     eza
     neofetch
+    btop
 
     discord
     obsidian
     anydesk
     kdePackages.kcalc
     floorp
+    vlc
 
     jdk
     iverilog
+    android-studio
 
     nerd-fonts.jetbrains-mono
   ];
