@@ -31,8 +31,10 @@
 
   services.xserver = {
     enable = true;
-    libinput.enable = true;
+    # libinput.enable = true;
   };
+
+  services.libinput.enable = true;
 
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
@@ -61,6 +63,20 @@
     jack.enable = true;
     wireplumber.enable = true;
   };
+
+  services.openssh = {
+    enable = true;
+    ports = [ 22 ];
+    settings = {
+      PasswordAuthentication = true;
+      AllowUsers = null;
+      UseDns = true;
+      X11Forwarding = false;
+      PermitRootLogin = "no";
+    };
+  };
+
+  users.defaultUserShell = pkgs.fish;
 
   users.users.mateus = {
     isNormalUser = true;
@@ -95,8 +111,13 @@
 
     starship = {
       enable = true;
-      settings = { };
+      settings = { 
+        username.show_always = true;
+        os.disabled = false;
+      };
     };
+
+    fish.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -129,7 +150,6 @@
 
     jdk
     iverilog
-    android-studio
 
     nerd-fonts.jetbrains-mono
   ];
