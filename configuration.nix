@@ -5,86 +5,89 @@
     ./hardware-configuration.nix
   ];
 
-  boot.supportedFilesystems = [ "ntfs" ];
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    supportedFilesystems = [ "ntfs" ];
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+  };
 
-  networking.hostName = "nixos"; 
-
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "nixos";
+    networkmanager.enable = true;
+  };
 
   time.timeZone = "America/Sao_Paulo";
 
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "pt_BR.UTF-8";
-    LC_IDENTIFICATION = "pt_BR.UTF-8";
-    LC_MEASUREMENT = "pt_BR.UTF-8";
-    LC_MONETARY = "pt_BR.UTF-8";
-    LC_NAME = "pt_BR.UTF-8";
-    LC_NUMERIC = "pt_BR.UTF-8";
-    LC_PAPER = "pt_BR.UTF-8";
-    LC_TELEPHONE = "pt_BR.UTF-8";
-    LC_TIME = "pt_BR.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "pt_BR.UTF-8";
+      LC_IDENTIFICATION = "pt_BR.UTF-8";
+      LC_MEASUREMENT = "pt_BR.UTF-8";
+      LC_MONETARY = "pt_BR.UTF-8";
+      LC_NAME = "pt_BR.UTF-8";
+      LC_NUMERIC = "pt_BR.UTF-8";
+      LC_PAPER = "pt_BR.UTF-8";
+      LC_TELEPHONE = "pt_BR.UTF-8";
+      LC_TIME = "pt_BR.UTF-8";
+    };
   };
 
-  services.xserver = {
-    enable = true;
-    # libinput.enable = true;
-  };
-
-  services.libinput.enable = true;
-
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
-  services.xserver.xkb = {
-    layout = "br";
-    variant = "";
+  services = {
+    xserver = {
+      enable = true;
+      xkb = {
+        layout = "br";
+        variant = "";
+      };
+    };
+    libinput.enable = true;
+    displayManager.sddm.enable = true;
+    desktopManager.plasma6.enable = true;
+    printing.enable = true;
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+      wireplumber.enable = true;
+    };
+    openssh = {
+      enable = true;
+      ports = [ 22 ];
+      settings = {
+        PasswordAuthentication = true;
+        AllowUsers = null;
+        UseDns = true;
+        X11Forwarding = false;
+        PermitRootLogin = "no";
+      };
+    };
   };
 
   console.keyMap = "br-abnt2";
 
-  services.printing.enable = true;
-
-  services.pulseaudio.enable = false;
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
   };
 
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-    wireplumber.enable = true;
-  };
 
-  services.openssh = {
-    enable = true;
-    ports = [ 22 ];
-    settings = {
-      PasswordAuthentication = true;
-      AllowUsers = null;
-      UseDns = true;
-      X11Forwarding = false;
-      PermitRootLogin = "no";
+  users = {
+    users.mateus = {
+      isNormalUser = true;
+      description = "mateus";
+      extraGroups = [ "networkmanager" "wheel" ];
+      packages = with pkgs; [
+        kdePackages.kate
+      ];
     };
-  };
-
-  users.defaultUserShell = pkgs.fish;
-
-  users.users.mateus = {
-    isNormalUser = true;
-    description = "mateus";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    ];
+    defaultUserShell = pkgs.fish;
   };
 
   nix.settings.experimental-features = [
@@ -92,15 +95,15 @@
     "flakes"
   ];
 
+  nixpkgs.config.allowUnfree = true;
+
   programs = {
     firefox.enable = true;
-
     ssh = {
       startAgent = true;
       enableAskPassword = true;
       askPassword = pkgs.lib.mkForce "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
     };
-
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -108,7 +111,6 @@
         proton-ge-bin
       ];
     };
-
     starship = {
       enable = true;
       settings = { 
@@ -116,11 +118,8 @@
         os.disabled = false;
       };
     };
-
     fish.enable = true;
   };
-
-  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     wezterm
