@@ -90,11 +90,6 @@
     defaultUserShell = pkgs.fish;
   };
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
   nixpkgs.config.allowUnfree = true;
 
   programs = {
@@ -121,48 +116,52 @@
     fish.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    wezterm
+  environment = {
+    localBinInPath = true;
+    sessionVariables.SSH_ASKPASS_REQUIRE = "prefer";
+    systemPackages = with pkgs; [
+      wezterm
 
-    vim 
-    inputs.nixvim.packages.${pkgs.system}.default 
-    git
-    zip
-    unzip    
-    fzf
-    bat
-    gitmoji-cli
-    
-    kdePackages.ksshaskpass
-    gparted
+      vim 
+      inputs.nixvim.packages.${pkgs.system}.default 
+      git
+      zip
+      unzip    
+      fzf
+      bat
+      gitmoji-cli
+      
+      kdePackages.ksshaskpass
+      gparted
 
-    eza
-    neofetch
-    btop
+      eza
+      neofetch
+      btop
 
-    discord
-    obsidian
-    anydesk
-    kdePackages.kcalc
-    floorp
-    vlc
+      discord
+      obsidian
+      anydesk
+      kdePackages.kcalc
+      floorp
+      vlc
 
-    jdk
-    iverilog
+      jdk
+      iverilog
 
-    nerd-fonts.jetbrains-mono
-  ];
-
-  environment.sessionVariables = {
-    SSH_ASKPASS_REQUIRE = "prefer";
+      nerd-fonts.jetbrains-mono
+    ];
   };
 
-  environment.localBinInPath = true;
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 10d";
+  nix = {
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 10d";
+    };
   };
 
   # Just don't 
