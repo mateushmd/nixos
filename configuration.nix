@@ -121,6 +121,7 @@
     sessionVariables.SSH_ASKPASS_REQUIRE = "prefer";
     systemPackages = with pkgs; [
       wezterm
+      kitty
 
       vim 
       inputs.nixvim.packages.${pkgs.system}.default 
