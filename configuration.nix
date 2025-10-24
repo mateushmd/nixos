@@ -1,7 +1,12 @@
-{ self, config, inputs, pkgs, ... }:
 {
-  imports =
-  [ 
+  self,
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
+{
+  imports = [
     ./hardware-configuration.nix
   ];
 
@@ -82,7 +87,10 @@
     users.mateus = {
       isNormalUser = true;
       description = "mateus";
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
       packages = with pkgs; [
         kdePackages.kate
       ];
@@ -93,6 +101,7 @@
   nixpkgs.config.allowUnfree = true;
 
   programs = {
+    nano.enable = false;
     firefox.enable = true;
     ssh = {
       startAgent = true;
@@ -108,7 +117,7 @@
     };
     starship = {
       enable = true;
-      settings = { 
+      settings = {
         username.show_always = true;
         os.disabled = false;
       };
@@ -123,15 +132,15 @@
       wezterm
       kitty
 
-      vim 
-      inputs.nixvim.packages.${pkgs.system}.default 
+      vim
+      inputs.nixvim.packages.${pkgs.system}.default
       git
       zip
-      unzip    
+      unzip
       fzf
       bat
       gitmoji-cli
-      
+
       kdePackages.ksshaskpass
       gparted
 
@@ -145,13 +154,23 @@
       kdePackages.kcalc
       floorp
       vlc
-
-      jdk
-      iverilog
+      aseprite
+      rars
 
       nerd-fonts.jetbrains-mono
     ];
   };
+
+  systemd.tmpfiles.rules = map (e: "w /sys/bus/${e}/power/control - - - - auto") [
+    "pci/devices/0000:00:01.0" # Renoir PCIe Dummy Host Bridge
+    "pci/devices/0000:00:02.0" # Renoir PCIe Dummy Host Bridge
+    "pci/devices/0000:00:14.0" # FCH SMBus Controller
+    "pci/devices/0000:00:14.3" # FCH LPC bridge
+    "pci/devices/0000:04:00.0" # FCH SATA Controller [AHCI mode]
+    "pci/devices/0000:04:00.1/ata1" # FCH SATA Controller, port 1
+    "pci/devices/0000:04:00.1/ata2" # FCH SATA Controller, port 2
+    "usb/devices/1-3" # USB camera
+  ];
 
   nix = {
     settings.experimental-features = [
@@ -165,6 +184,6 @@
     };
   };
 
-  # Just don't 
+  # Just don't
   system.stateVersion = "24.11"; # Did you read the comment?
 }
