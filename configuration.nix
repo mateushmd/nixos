@@ -155,6 +155,7 @@
       floorp
       vlc
       aseprite
+      gimp3-with-plugins
       rars
 
       nerd-fonts.jetbrains-mono
@@ -180,7 +181,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 10d";
+      options = "--delete-older-than 30d";
     };
   };
 
