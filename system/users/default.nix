@@ -1,5 +1,10 @@
 { pkgs, ... }:
 {
+  imports = [
+    ./users.nix
+    ./sudo.nix
+  ];
+
   users = {
     mutableUsers = false;
     users = {
