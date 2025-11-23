@@ -17,7 +17,7 @@
   };
 
   networking = {
-    hostName = "nixos";
+    hostName = "mameus";
     networkmanager.enable = true;
   };
 
@@ -63,13 +63,14 @@
       enable = true;
       ports = [ 22 ];
       settings = {
-        PasswordAuthentication = true;
+        PasswordAuthentication = false;
         AllowUsers = null;
         UseDns = true;
         X11Forwarding = false;
         PermitRootLogin = "no";
       };
     };
+    tailscale.enable = true;
   };
 
   console.keyMap = "br-abnt2";
@@ -150,7 +151,7 @@
       obsidian
       anydesk
       kdePackages.kcalc
-      floorp
+      floorp-bin
       vlc
       aseprite
       gimp3-with-plugins

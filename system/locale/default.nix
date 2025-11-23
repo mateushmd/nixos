@@ -14,4 +14,6 @@
       LC_TIME = "pt_BR.UTF-8";
     };
   };
+
+  time.timeZone = "America/Sao_Paulo";
 }

@@ -6,13 +6,14 @@
     nixvim.url = "github:mateushmd/nixvim";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
-  {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./configuration.nix 
-      ];
+  outputs =
+    { nixpkgs, ... }@inputs:
+    {
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./configuration.nix
+        ];
+      };
     };
-  };
 }

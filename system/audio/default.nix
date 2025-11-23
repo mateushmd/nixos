@@ -3,7 +3,6 @@
   security.rtkit.enable = true;
 
   services = {
-    pulseaudio.enable = false;
     pipewire = {
       enable = true;
       alsa = {
@@ -16,8 +15,4 @@
     };
   };
 
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
 }

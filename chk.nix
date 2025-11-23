@@ -108,16 +108,17 @@
     };
   */
 
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
 
   programs = {
-    nano.enable = false;
-    firefox.enable = true;
+    # nano.enable = false;
+    # firefox.enable = true;
     ssh = {
       startAgent = true;
       enableAskPassword = true;
       askPassword = pkgs.lib.mkForce "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
     };
+    /*
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -132,12 +133,14 @@
         os.disabled = false;
       };
     };
+    */
     fish.enable = true;
   };
 
   environment = {
     localBinInPath = true;
     sessionVariables.SSH_ASKPASS_REQUIRE = "prefer";
+    /*
     systemPackages = with pkgs; [
       wezterm
       kitty
@@ -170,6 +173,7 @@
 
       nerd-fonts.jetbrains-mono
     ];
+    */
   };
 
   /*
