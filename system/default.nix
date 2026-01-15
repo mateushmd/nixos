@@ -1,5 +1,6 @@
-{ ... }:
+{ utilityFuncs, ... }:
 {
+  /*
   imports = [
     ./audio
     ./bluetooth
@@ -14,8 +15,9 @@
     ./sudo
     ./users
   ];
+  */
 
-  services.printing.enable = true;
+  imports = utilityFuncs.scanDirs ./.;
 
   system.stateVersion = "24.11";
 }

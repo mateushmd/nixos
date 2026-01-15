@@ -20,6 +20,7 @@
         enable = true;
         rerere.autoUpdate = true;
       };
+      credential.helper = "libsecret";
     };
   };
 }

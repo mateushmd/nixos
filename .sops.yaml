@@ -1,0 +1,7 @@
+keys:
+  - &primary age1rrt5qn8eed5scf3w8c0n4whj77g05tzmdtnxtkwr6amwuq4uk47se5tvxt
+creation_rules:
+  - path_regex: secrets/phalanx/secrets.yaml$
+    key_groups:
+    - age:
+      - *primary

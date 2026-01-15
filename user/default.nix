@@ -1,4 +1,4 @@
-{ ... }:
+{ utilityFuncs, ... }:
 {
-  imports = [];
+  imports = (utilityFuncs.scanDirs ./.) ++ [./packages.nix];
 }

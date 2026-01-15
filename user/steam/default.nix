@@ -4,7 +4,7 @@
     enable = true;
     remotePlay.openFirewall = true;
     extraCompatPackages = [
-      pkgs.proto-ge-bin
+      pkgs.proton-ge-bin
     ];
   };
 }
