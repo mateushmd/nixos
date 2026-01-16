@@ -24,9 +24,10 @@
       anydesk
       vlc
       aseprite
-      gimp3-with-plugins;
+      gimp3-with-plugins
+      gcolor3;
   } ++ [
-    inputs.nixvim.packages.${pkgs.system}.default
+    inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.kdePackages.kcalc
   ];
 }

@@ -32,17 +32,5 @@
       };
 
       nixosConfigurations = import ./hosts inputs;
-
-      /*
-      nixosConfigurations.nixos = lib.nixosSystem {
-        specialArgs = { 
-          inherit inputs; 
-        };
-
-        modules = [
-          ./configuration.nix
-        ];
-      };
-      */
     };
 }
