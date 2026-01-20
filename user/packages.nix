@@ -24,6 +24,7 @@
       anydesk
       vlc
       aseprite
+      audacity
       gimp3-with-plugins
       gcolor3;
   } ++ [

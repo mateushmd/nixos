@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    wrappers.url = "github:lassulus/wrappers";
     nixvim.url = "github:mateushmd/nixvim";
     sops-nix = {
       url = "github:Mic92/sops-nix";
