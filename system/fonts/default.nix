@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  fonts.packages = [
-    pkgs.nerd-fonts.jetbrains-mono
-  ];
+  fonts = {
+    fontDir.enable = true;
+    packages = [
+      pkgs.nerd-fonts.jetbrains-mono
+    ];
+  };
 }

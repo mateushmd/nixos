@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, ... }:
 let
   inherit (lib) mkOption mkIf types;
   cfg = config.custom.hyprland;
