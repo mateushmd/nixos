@@ -17,8 +17,6 @@
       inherit (nixpkgs) lib;
     in
     {
-      inputs.wrapped = import ./wrapped inputs;
-
       configModules = {
         system = import ./system;
         user = import ./user;

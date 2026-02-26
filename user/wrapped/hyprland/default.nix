@@ -1,16 +1,19 @@
-{ lib, pkgs, wrappers, ... }:
+{ lib, inputs, ... }:
 let
-  hyprModule = pname:
-    wrappers.lib.wrapModule (
+  apps = [ "hyprland" "hyprpaper" ];
+
+  hyprModule = name:
+    inputs.wrappers.lib.wrapModule (
       { config, lib, wlib, ... }:
       let
-        confName = "${pname}.conf";
+        confName = "${name}.conf";
       in
       {
-        name = "${pname}-wrapped";
+        name = "${name}-wrapped";
 
         options."${confName}" = lib.mkOption {
           type = wlib.types.file config.pkgs;
+          default.content = "";
         };
 
         config = {
@@ -21,11 +24,9 @@ let
 
   mkHyprApp = pkg:
     (hyprModule pkg.pname).apply {
-      inherit pkgs;
+      inherit (inputs) nixpkgs;
       package = pkg;
       "${pkg.pname}.conf".content = ./config/${pkg.pname}.conf;
     };
-
-  apps = [ "hyprland" "hyprpaper" ];
 in
-lib.genAttrs apps ( name: (mkHyprApp pkgs.${name}).wrapper )
+lib.genAttrs apps ( name: (mkHyprApp inputs.nixpkgs.${name}).wrapper )
