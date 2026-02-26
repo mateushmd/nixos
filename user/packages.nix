@@ -18,6 +18,7 @@
       fastfetch
       btop
       sops
+      qemu
 
       discord
       obsidian

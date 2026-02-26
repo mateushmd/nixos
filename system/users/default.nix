@@ -12,6 +12,8 @@
           "networkmanager"
           "wheel"
           "audio"
+          "libvrtd"
+          "docker"
         ];
         uid = 1000;
       };

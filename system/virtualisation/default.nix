@@ -18,4 +18,8 @@
     };
   };
   */
+
+  virtualisation.docker = {
+    enable = true;
+  };
 }
