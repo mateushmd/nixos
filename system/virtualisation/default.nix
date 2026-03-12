@@ -1,6 +1,6 @@
 { modulesPath, ... }:
 {
-  /*
+/*
   imports = [
     "${modulesPath}/virtualisation/qemu-vm.nix"
   ];
@@ -19,7 +19,8 @@
   };
   */
 
-  virtualisation.docker = {
-    enable = true;
+  virtualisation = {
+    docker.enable = true;
+    libvirtd.enable = true;
   };
 }
