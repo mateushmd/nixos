@@ -12,8 +12,17 @@
           "networkmanager"
           "wheel"
           "audio"
+          "libvrtd"
+          "docker"
         ];
         uid = 1000;
+      };
+      puddo = {
+        isNormalUser = true;
+        extraGroups = [
+          "libvrtd"
+          "wheel"
+        ];  
       };
       root = {
         initialPassword = "123";
