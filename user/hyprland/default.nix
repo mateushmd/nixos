@@ -7,17 +7,13 @@ in
   options.custom.hyprland.enable = mkOption {
     type = types.bool;
     default = true;
-    description = "Enables Hyprland";
+    description = "Whether to enable the Hyprland Wayland compositor and related tools.";
   };
 
   config = mkIf cfg.enable {
-    /*
-    programs = {
-      hyprland = {
-        enable = true;
-        withUWSM = true;
-      };
-    };
-    */
+    environment.systemPackages = [
+      config.custom.wrapped.hyprland.wrapper
+      config.custom.wrapped.hyprpaper.wrapper
+    ];
   };
 }
