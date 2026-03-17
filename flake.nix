@@ -20,6 +20,7 @@
       configModules = {
         system = import ./system;
         user = import ./user;
+        wrapped = import ./wrapped;
       };
 
       utilityFuncs = {

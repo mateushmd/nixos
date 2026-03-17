@@ -1,9 +1,5 @@
 { pkgs, inputs, ... }:
 {
-  nixpkgs.config.permittedInsecurePackages = [
-    "cisco-packet-tracer-9.0.0"
-  ];
-
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
       wezterm
@@ -32,8 +28,7 @@
       aseprite
       audacity
       gimp3-with-plugins
-      gcolor3
-      cisco-packet-tracer_9;
+      gcolor3;
   } ++ [
     inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.kdePackages.kcalc

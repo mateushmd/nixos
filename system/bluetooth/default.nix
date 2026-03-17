@@ -8,7 +8,7 @@ let
   cfg = config.custom.bluetooth;
 in 
 {
-  options.custom.bluetooth.enable = mkEnableOption "Enables bluetooth support";
+  options.custom.bluetooth.enable = mkEnableOption "Bluetooth support";
   
   config.hardware.bluetooth = mkIf cfg.enable {
     enable = true;

@@ -4,7 +4,7 @@ let
   cfg = config.custom.laptop;
 in
 {
-  options.custom.laptop.enable = mkEnableOption "Enable laptop settings";
+  options.custom.laptop.enable = mkEnableOption "laptop-specific power and hardware settings";
 
   config = mkIf cfg.enable {
     services = {

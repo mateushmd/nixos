@@ -7,7 +7,7 @@ in
   options.custom.plasma.enable = mkOption {
     type = types.bool;
     default = true;
-    description = "Enables Plasma 6 Desktop Environment";
+    description = "Whether to enable the KDE Plasma 6 Desktop Environment and SDDM.";
   };
 
   config.services = mkIf cfg.enable {
