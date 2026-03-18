@@ -28,7 +28,8 @@
       aseprite
       audacity
       gimp3-with-plugins
-      gcolor3;
+      gcolor3
+      cisco-packet-tracer_9;
   } ++ [
     inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.kdePackages.kcalc
