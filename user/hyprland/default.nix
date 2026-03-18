@@ -15,5 +15,10 @@ in
       config.custom.wrapped.hyprland.wrapper
       config.custom.wrapped.hyprpaper.wrapper
     ];
+
+    programs.hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
   };
 }
