@@ -1,4 +1,4 @@
-{ lib, inputs, ... }:
+{ inputs, ... }:
 inputs.wrappers.lib.wrapModule (
   { config, lib, wlib, ... }:
   let

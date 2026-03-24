@@ -2,17 +2,17 @@
 inputs.wrappers.lib.wrapModule (
   { config, lib, wlib, ... }:
   let
-    confName = "hyprland.conf";
+    confName = "hyprlock.conf";
   in
   {
     options."${confName}" = lib.mkOption {
       type = wlib.types.file config.pkgs;
-      default.content = builtins.readFile ./hyprland.conf;
-      description = "Hyprland configuration file content.";
+      default.content = builtins.readFile ./hyprlock.conf;
+      description = "Hyprlock configuration file content.";
     };
 
     config = {
-      package = config.pkgs.hyprland;
+      package = config.pkgs.hyprlock;
       flags."-c" = toString config."${confName}".path;
     };
   }

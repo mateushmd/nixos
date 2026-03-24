@@ -14,6 +14,9 @@ in
     environment.systemPackages = [
       config.custom.wrapped.hyprland.wrapper
       config.custom.wrapped.hyprpaper.wrapper
+      config.custom.wrapped.hypridle.wrapper
+      config.custom.wrapped.hyprlock.wrapper
+      config.custom.wrapped.waybar.wrapper
     ];
 
     programs.hyprland = {
