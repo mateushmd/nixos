@@ -10,8 +10,12 @@ in
 {
   options.custom.bluetooth.enable = mkEnableOption "Bluetooth support";
   
-  config.hardware.bluetooth = mkIf cfg.enable {
-    enable = true;
-    powerOnBoot = false;
+  config = mkIf cfg.enable {
+    hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = false;
+    };
+    
+    services.blueman.enable = true;
   };
 }

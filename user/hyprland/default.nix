@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   inherit (lib) mkOption mkIf types;
   cfg = config.custom.hyprland;
@@ -11,7 +11,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [
+    environment.systemPackages = builtins.attrValues {
+      inherit (pkgs)
+        rofi;
+    } ++ [
       config.custom.wrapped.hyprland.wrapper
       config.custom.wrapped.hyprpaper.wrapper
       config.custom.wrapped.hypridle.wrapper

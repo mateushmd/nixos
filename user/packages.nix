@@ -2,16 +2,17 @@
 {
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
+      # must have
       wezterm
       kitty
-
       vim
       git
-      zip
-      unzip
+      
+      # cli tools
       libsecret 
       gemini-cli
-
+      zip
+      unzip
       fzf
       bat
       gparted
@@ -21,6 +22,7 @@
       sops
       qemu
 
+      # apps
       discord
       obsidian
       anydesk
@@ -30,6 +32,7 @@
       gimp3-with-plugins
       gcolor3
       cisco-packet-tracer_9;
+      ventoy
   } ++ [
     inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.kdePackages.kcalc
