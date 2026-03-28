@@ -31,8 +31,8 @@
       audacity
       gimp3-with-plugins
       gcolor3
-      cisco-packet-tracer_9;
-      ventoy
+      cisco-packet-tracer_9
+      ventoy;
   } ++ [
     inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.kdePackages.kcalc
