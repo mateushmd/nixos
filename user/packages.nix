@@ -21,6 +21,8 @@
       btop
       sops
       qemu
+      fd
+      ripgrep
 
       # apps
       discord
@@ -31,8 +33,7 @@
       audacity
       gimp3-with-plugins
       gcolor3
-      cisco-packet-tracer_9
-      ventoy;
+      cisco-packet-tracer_9;
   } ++ [
     inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.kdePackages.kcalc

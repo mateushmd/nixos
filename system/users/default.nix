@@ -14,6 +14,7 @@
           "audio"
           "libvrtd"
           "docker"
+          "kvm"
         ];
         uid = 1000;
       };

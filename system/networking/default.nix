@@ -6,5 +6,6 @@
       enable = true;
       dns = "none";
     };
+    firewall.trustedInterfaces = [ "virbr0" ];
   };
 }
