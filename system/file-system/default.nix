@@ -1,5 +1,6 @@
 { ... }:
 {
+  boot.supportedFilesystems = [ "ntfs" ];
   fileSystems = {
     "/mnt/pocket" = {
       label = "pocket";

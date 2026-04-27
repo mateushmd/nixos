@@ -23,6 +23,7 @@
       qemu
       fd
       ripgrep
+      tldr
 
       # apps
       discord
