@@ -1,7 +1,8 @@
 { lib, pkgs, ... }:
 {
   programs.firejail = {
-    enable = true;
+    enable = false;
+    /*
     wrappedBinaries = {
       packettracer9 = {
         executable = lib.getExe pkgs.cisco-packet-tracer_9;
@@ -12,5 +13,6 @@
         ];
       };
     };
+    */
   };
 }
