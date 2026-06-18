@@ -1,6 +1,16 @@
-{ pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, ... }:
+let
+  inherit (lib) mkOption optional types;
+  cfg = config.custom.heroic;
+in
 {
-  environment.systemPackages = builtins.attrValues {
+  options.custom.heroic.enable = mkOption {
+    type = types.bool;
+    default = true;
+    description = "Whether to enable Heroic Game Launcher.";
+  };
+
+  config.environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
       # must have
       wezterm
@@ -37,5 +47,5 @@
   } ++ [
     inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.kdePackages.kcalc
-  ];
+  ] ++ optional cfg.enable pkgs.heroic;
 }
