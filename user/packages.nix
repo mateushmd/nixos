@@ -20,7 +20,7 @@ in
       
       # cli tools
       libsecret 
-      gemini-cli
+      antigravity-cli
       zip
       unzip
       fzf
