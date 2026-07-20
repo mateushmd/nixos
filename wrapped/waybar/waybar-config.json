@@ -1,6 +1,6 @@
 {
     "layer": "top",
-    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-left": ["hyprland/workspaces", "hyprland/mode"],
     "modules-center": ["clock"],
     "modules-right": ["pulseaudio", "bluetooth", "network", "battery"],
     "sway/window": {
