@@ -1,18 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
-  inherit (lib) mkOption mkIf types;
-  cfg = config.custom.niri;
+  cfg = config.custom.desktop.niri;
 in
 {
-  options.custom.niri.enable = mkOption {
-    type = types.bool;
-    default = true;
-    description = "Whether to enable the Niri Wayland compositor.";
-  };
-  
-  /*
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = config.custom.wrapped.niri.wrapper;
   };
-  */
 }

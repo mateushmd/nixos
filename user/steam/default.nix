@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   inherit (lib) mkIf mkOption types;
-  cfg = config.custom.gaming;
+  cfg = config.custom.gaming.steam;
 in
 { 
   options.custom.steam.enable = mkOption {

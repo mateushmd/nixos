@@ -1,11 +1,9 @@
 { config, lib, ... }:
 let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) mkIf;
   cfg = config.custom.laptop;
 in
 {
-  options.custom.laptop.enable = mkEnableOption "laptop-specific power and hardware settings";
-
   config = mkIf cfg.enable {
     services = {
       power-profiles-daemon.enable = false;

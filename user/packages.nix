@@ -1,15 +1,9 @@
 { config, lib, pkgs, inputs, ... }:
 let
-  inherit (lib) mkOption optional types;
-  cfg = config.custom.heroic;
+  inherit (lib) optional;
+  cfg = config.custom.gaming.heroic;
 in
 {
-  options.custom.heroic.enable = mkOption {
-    type = types.bool;
-    default = true;
-    description = "Whether to enable Heroic Game Launcher.";
-  };
-
   config.environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
       # must have

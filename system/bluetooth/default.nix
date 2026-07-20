@@ -4,12 +4,10 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) mkIf;
   cfg = config.custom.bluetooth;
 in 
 {
-  options.custom.bluetooth.enable = mkEnableOption "Bluetooth support";
-  
   config = mkIf cfg.enable {
     hardware.bluetooth = {
       enable = true;

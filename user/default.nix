@@ -1,6 +1,4 @@
-{ lib, pkgs, utilityFuncs, ... }:
+{ utilityFuncs, ... }:
 {
-  options.custom.gaming.enable = lib.mkEnableOption "Gaming support";
-
-  imports = (utilityFuncs.scanDirs ./.) ++ [./packages.nix];
+  imports = (utilityFuncs.scanDirs ./.) ++ [ ./packages.nix ./options.nix ];
 }
