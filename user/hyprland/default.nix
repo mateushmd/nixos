@@ -1,7 +1,8 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (lib) mkOption mkIf types;
+  inherit (lib) mkIf;
   cfg = config.custom.desktop.hyprland;
+  wrapped = config.custom.wrapped;
 in
 {
   config = mkIf cfg.enable {
@@ -9,16 +10,17 @@ in
       inherit (pkgs)
         rofi;
     } ++ [
-      config.custom.wrapped.hyprland.wrapper
-      config.custom.wrapped.hyprpaper.wrapper
-      config.custom.wrapped.hypridle.wrapper
-      config.custom.wrapped.hyprlock.wrapper
-      config.custom.wrapped.waybar.wrapper
+      wrapped.hyprland.wrapper
+      wrapped.hyprpaper.wrapper
+      wrapped.hypridle.wrapper
+      wrapped.hyprlock.wrapper
+      wrapped.waybar.wrapper
     ];
 
-    programs.hyprland = {
-      enable = true;
-      withUWSM = true;
+    programs.uwsm.waylandCompositors.hyprland = { 
+      prettyName = "Hyprland";
+      comment = "Hyprland compositor managed by UWSM";
+      binPath = "${wrapped.hyprland.wrapper}/bin/hyprland-wrapped";
     };
   };
 }

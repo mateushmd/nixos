@@ -1,4 +1,12 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
+let
+  package = inputs.wrappers.lib.wrapPackage {
+    inherit pkgs;
+    package = pkgs.hyprland;
+    exePath = "${pkgs.hyprland}/bin/Hyprland";
+    binName = "hyprland-wrapped";
+  };
+in
 inputs.wrappers.lib.wrapModule (
   { config, lib, wlib, ... }:
   let
@@ -12,7 +20,7 @@ inputs.wrappers.lib.wrapModule (
     };
 
     config = {
-      package = config.pkgs.hyprland;
+      package = package;
       flags."-c" = toString config."${confName}".path;
     };
   }
