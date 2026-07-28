@@ -36,14 +36,28 @@ in
     gaming = {
       steam.enable = mkOption {
         type = types.bool;
-        default = true;
+        default = false;
         description = "Whether to enable Steam.";
       };
 
       heroic.enable = mkOption {
         type = types.bool;
-        default = true;
+        default = false;
         description = "Whther to enable Heroic Game Launcher.";
+      };
+    };
+
+    terminal = {
+      wezterm.enable = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Whether to enable Wezterm";
+      };
+
+      kitty.enable = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Whether to enable Kitty";
       };
     };
 

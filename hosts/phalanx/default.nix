@@ -16,6 +16,11 @@
       heroic.enable = true;
     };
 
+    terminal = {
+      wezterm.enable = true;
+      kitty.enable = true;
+    };
+
     laptop.enable = true;
     bluetooth.enable = true;
   };

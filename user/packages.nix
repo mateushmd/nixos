@@ -1,7 +1,7 @@
 { config, lib, pkgs, inputs, ... }:
 let
   inherit (lib) optional;
-  cfg = config.custom.gaming.heroic;
+  cfg = config.custom;
 in
 {
   config.environment.systemPackages = builtins.attrValues {
@@ -41,5 +41,6 @@ in
   } ++ [
     inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.kdePackages.kcalc
-  ] ++ optional cfg.enable pkgs.heroic;
+  ] ++ optional cfg.gaming.heroic.enable pkgs.heroic
+  ++ optional cfg.terminal.wezterm.enable cfg.wrapped.wezterm;
 }
