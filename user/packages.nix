@@ -7,7 +7,6 @@ in
   config.environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
       # must have
-      wezterm
       kitty
       vim
       git
@@ -42,5 +41,5 @@ in
     inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.kdePackages.kcalc
   ] ++ optional cfg.gaming.heroic.enable pkgs.heroic
-  ++ optional cfg.terminal.wezterm.enable cfg.wrapped.wezterm;
+  ++ optional cfg.terminal.wezterm.enable cfg.wrapped.wezterm.wrapper;
 }
