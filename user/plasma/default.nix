@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  inherit (lib) mkIf mkOption types;
+  inherit (lib) mkIf;
   cfg = config.custom.desktop.plasma;
 in
 {

@@ -65,11 +65,16 @@ in
       settings";
 
     bluetooth.enable = mkEnableOption "Bluetooth support";
+
+    nano.enable = mkEnableOption "Whether to enable the nano text editor";
   };
 
   config = {
-    custom.desktop.hyprland.enable = mkIf (cfg.desktop.defaultDE == "hyprland") true;
-    custom.desktop.niri.enable = mkIf (cfg.desktop.defaultDE == "niri") true;
-    custom.desktop.plasma.enable = mkIf (cfg.desktop.defaultDE == "plasma") true;
+    custom.desktop.hyprland.enable = 
+      mkIf (cfg.desktop.defaultDE == "hyprland") true;
+    custom.desktop.niri.enable = 
+      mkIf (cfg.desktop.defaultDE == "niri") true;
+    custom.desktop.plasma.enable = 
+      mkIf (cfg.desktop.defaultDE == "plasma") true;
   };
 }

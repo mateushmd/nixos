@@ -8,7 +8,7 @@
     desktop = {
       hyprland.enable = true;
       plasma.enable = true;
-      defaultDE = "plasma";
+      defaultDE = "hyprland";
     };
 
     gaming = {
@@ -23,5 +23,6 @@
 
     laptop.enable = true;
     bluetooth.enable = true;
+    nano.enable = false;
   };
 }
