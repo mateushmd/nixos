@@ -20,8 +20,36 @@ inputs.wrappers.lib.wrapModule (
 
     config = {
       package = config.pkgs.waybar;
-      flags."-c" = toString config."${confName}".path;
-      flags."-s" = toString config."${styName}".path;
+
+      # flags."-c" = toString config."${confName}".path;
+      # flags."-s" = toString config."${styName}".path;
+
+      args = [ "\${FINAL_ARGS[@]}" ];
+
+      preHook = ''
+        STORE_CONFIG="${toString config."${confName}".path}"
+        STORE_STYLE="${toString config."${styName}".path}"
+
+        HAS_CONFIG=0
+        HAS_STYLE=0
+
+        for arg in "$@"; do
+          if [ "$arg" = "-c" ]; then HAS_CONFIG=1; fi
+          if [ "$arg" = "-s" ]; then HAS_STYLE=1; fi
+        done
+
+        FINAL_ARGS=()
+
+        if [ "$HAS_CONFIG" -eq 0 ]; then
+          FINAL_ARGS+=("-c" "$STORE_CONFIG")
+        fi
+
+        if [ "$HAS_STYLE" -eq 0 ]; then
+          FINAL_ARGS+=("-s" "$STORE_STYLE")
+        fi
+
+        FINAL_ARGS+=("$@")
+      '';
     };
   }
 )
