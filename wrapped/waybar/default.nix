@@ -47,8 +47,6 @@ inputs.wrappers.lib.wrapModule (
         if [ "$HAS_STYLE" -eq 0 ]; then
           FINAL_ARGS+=("-s" "$STORE_STYLE")
         fi
-
-        FINAL_ARGS+=("$@")
       '';
     };
   }
