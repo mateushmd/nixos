@@ -1,10 +1,11 @@
 {
     "layer": "top",
+
     "modules-left": ["hyprland/workspaces", "hyprland/mode"],
     "modules-center": ["clock"],
     "modules-right": ["pulseaudio", "bluetooth", "network", "battery"],
-    "sway/window": {
-        "max-length": 50
+    "hyprland/workspaces": {
+        "format": "{name}",
     },
     "clock": {
         "format-alt": "{:%a, %d. %b  %H:%M}"
