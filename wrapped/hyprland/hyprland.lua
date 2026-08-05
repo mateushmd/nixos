@@ -1,6 +1,6 @@
 local terminal = "kitty"
 local fileManager = "dolphin"
-local menu = "rofi --show drun"
+local menu = "rofi -show drun"
 local browser = "firefox"
 
 hl.curve("easeOutQuint", {
@@ -279,7 +279,7 @@ hl.monitor({
     output = "eDP-1",
     mode = "1920x1080@120",
     position = "0x0",
-    scale = 1.2
+    scale = 1
 })
 
 hl.on("hyprland.start", function ()
@@ -310,4 +310,9 @@ hl.window_rule({
     match = { class = "hyprland-run" },
     move  = "20 monitor_h-120",
     float = true,
+})
+
+hl.layer_rule({
+    match = { namespace = "waybar" },
+    blur = true
 })
