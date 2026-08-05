@@ -1,8 +1,10 @@
 { pkgs, modulesPath, ... }:
 {
+  /*
   imports = [
     "${modulesPath}/virtualisation/qemu-vm.nix"
   ];
+  */
 
 
   virtualisation = {
@@ -10,6 +12,7 @@
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
 
+    /*
     vmVariant = {
       virtualisation = { 
         sharedDirectories = {
@@ -22,6 +25,7 @@
         cores = 4;
       };
     };
+    */
   };
 
   systemd.services.libvirt-default-network = {
