@@ -1,28 +1,27 @@
-{ pkgs, ... }:
+{ pkgs, modulesPath, ... }:
 {
-  /*
   imports = [
     "${modulesPath}/virtualisation/qemu-vm.nix"
   ];
 
-  virtualisation = { 
-    sharedDirectories = {
-      sops-keys = {
-        source = "/var/lib/sops";
-        target = "/var/lib/sops";
-      };
-    };
-    vmVariant.virtualisation = {
-      memorySize = 4096;  
-      cores = 4;
-    };
-  };
-  */
 
   virtualisation = {
     docker.enable = true;
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
+
+    vmVariant = {
+      virtualisation = { 
+        sharedDirectories = {
+          sops-keys = {
+            source = "/var/lib/sops";
+            target = "/var/lib/sops";
+          };
+        };
+        memorySize = 4096;  
+        cores = 4;
+      };
+    };
   };
 
   systemd.services.libvirt-default-network = {
