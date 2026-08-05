@@ -1,4 +1,7 @@
 { config, pkgs, ... }:
+let
+  hostName = config.networking.hostName;
+in
 {
   users = {
     mutableUsers = false;
@@ -6,7 +9,7 @@
       mateus = {
         isNormalUser = true;
         description = "mateus";
-        hashedPasswordFile = config.sops.secrets.user-password.path;
+        hashedPasswordFile = config.sops.secrets."${hostName}/user-password".path;
         shell = pkgs.fish;
         extraGroups = [
           "networkmanager"

@@ -1,5 +1,6 @@
 { config, inputs, ... }:
 let
+  hostName = config.networking.hostName;
   ageKeyFile = "/var/lib/sops/age/keys.txt";
 in
 {
@@ -10,11 +11,11 @@ in
   environment.variables.SOPS_AGE_KEY_FILE = ageKeyFile;
 
   sops = {
-    defaultSopsFile = "${inputs.self}/secrets/${config.networking.hostName}/secrets.yaml";
+    defaultSopsFile = "${inputs.self}/secrets/secrets.yaml";
     defaultSopsFormat = "yaml";
     age.keyFile = ageKeyFile;
 
-    secrets.user-password = {
+    secrets."${hostName}/user-password" = {
       neededForUsers = true;
     };
   };
