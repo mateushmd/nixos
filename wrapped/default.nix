@@ -1,8 +1,8 @@
-{ pkgs, utilityFuncs, lib, ... }@args:
+{ pkgs, myLib, lib, ... }@args:
 let
-  dirs = utilityFuncs.scanDirs ./.;
+  dirs = myLib.scanDirs ./.;
   
-  getName = path: builtins.baseNameOf (toString path);
+  getName = path: baseNameOf (toString path);
 
   wrappedModules = builtins.listToAttrs (map (dir: {
     name = getName dir;

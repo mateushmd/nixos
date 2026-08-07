@@ -1,4 +1,4 @@
-{ utilityFuncs, ... }:
+{ myLib, ... }:
 {
-  imports = (utilityFuncs.scanDirs ./.) ++ [ ./packages.nix ./options.nix ];
+  imports = (myLib.scanDirs ./.) ++ [ ./packages.nix ./options.nix ];
 }

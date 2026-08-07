@@ -1,6 +1,6 @@
 { nixpkgs, self, ... } @ inputs: 
 let
-  inherit (self) configModules utilityFuncs;
+  inherit (self) configModules myLib;
   mkHost = name: system:
     nixpkgs.lib.nixosSystem {
       modules = [
@@ -12,7 +12,7 @@ let
       ] ++ builtins.attrValues configModules;
 
       specialArgs = {
-        inherit inputs utilityFuncs;
+        inherit inputs myLib;
       };
     };
 in

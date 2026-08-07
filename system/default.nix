@@ -1,4 +1,4 @@
-{ utilityFuncs, ... }:
+{ myLib, ... }:
 {
   /*
   imports = [
@@ -17,7 +17,7 @@
   ];
   */
 
-  imports = utilityFuncs.scanDirs ./.;
+  imports = myLib.scanDirs ./.;
 
   system.stateVersion = "24.11";
 }
