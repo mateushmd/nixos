@@ -17,6 +17,7 @@ It still requires a few imperative setup steps and is not fully customizable out
 ## Structure
 
 - `hosts/`: Per-host system configurations.
+- `lib/`: Attrset with some utility functions.
 - `secrets/`: Encrypted SOPS secret files.
 - `system/`: Theoretically immutable configuration across users.
 - `user/`: Mutable configuration across users.
