@@ -4,12 +4,10 @@
     enable = true;
     lfs.enable = true;
     config = {
-      user = {
-        email = "mateushmdiniz@gmail.com";
-        name = "mateushmd";
-      };
-      init.defaultBranch = "main";
+      commit.gpgsign = true;
       core.editor = "nvim";
+      gpg.format = "ssh";
+      init.defaultBranch = "main";
       merge.tool = "nvim";
       mergetool = {
         keepBackup = false;
@@ -20,7 +18,11 @@
         enable = true;
         rerere.autoUpdate = true;
       };
-      credential.helper = "libsecret";
+      user = {
+        email = "mateushmdiniz@gmail.com";
+        name = "mateushmd";
+        signingkey = "~/.ssh/id_ed25519.pub";
+      };
     };
   };
 }

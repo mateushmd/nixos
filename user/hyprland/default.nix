@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, myLib, pkgs, ... }:
 let
   inherit (lib) mkIf;
+
+  wallpapers = myLib.fetchWallpapers {
+    owner = "mateushmd";
+    repo = "wallpapers";
+    rev = "243fdade1cdbed900dbac3eba24ea3668f6e846c";
+  };
+
   cfg = config.custom.desktop.hyprland;
   wrapped = config.custom.wrapped;
 in

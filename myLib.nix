@@ -3,10 +3,11 @@ let
   inherit (pkgs) lib;
 in
 {
-  fetchWallpapers = { owner, repo, rev, hash }: 
+  fetchWallpapers = { owner, repo, rev }: 
   let
-    source = pkgs.fetchFromGithub {
-      inherit owner repo rev hash;
+    source = fetchGit {
+      url = "git@github.com:${owner}/${repo}.git";
+      inherit rev;
     };
 
     validExtensions = [ "png" "jpg" "jpeg" ];

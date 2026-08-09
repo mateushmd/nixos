@@ -1,8 +1,13 @@
-{ pkgs, ... }:
+{ ... }:
 {
   programs.ssh = {
     startAgent = true;
-    enableAskPassword = true;
-    askPassword = pkgs.lib.mkForce "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
+    extraConfig = "
+      Host github.com
+        User git
+        IdentityFile ~/.ssh/id_ed25519
+        IdentitiesOnly yes
+        AddKeysToAgent yes
+    ";
   };
 }
