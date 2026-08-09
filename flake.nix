@@ -31,6 +31,12 @@
         wrapped = import ./wrapped;
       };
 
+      forAllSystems = nixpkgs.lib.genAttrs [
+          "x86_64-linux" 
+          "aarch64-linux" 
+          "aarch64-darwin"
+      ];
+
       mkHyprstubsApp = pkgs: {
         type = "app";
         program =
@@ -53,13 +59,14 @@
           mainProgram = "gen-hypr-stubs";
         };
       };
+
     in
     {
-      apps = myLib.forAllSystems (system: {
+      apps = forAllSystems (system: {
         hyprstubs = mkHyprstubsApp nixpkgs.legacyPackages.${system};
       });
 
-      formatter = myLib.forAllSystems (system: 
+      formatter = forAllSystems (system: 
         nixpkgs.legacyPackages.${system}.nixfmt
       );
 
