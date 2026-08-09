@@ -22,6 +22,7 @@ let
   in [  
     wrapped.hyprland.wrapper
     hyprpaper-wrapper
+    wrapped.hyprpaper.wrapper
     wrapped.hypridle.wrapper
     wrapped.hyprlock.wrapper
     wrapped.waybar.wrapper
