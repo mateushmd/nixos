@@ -67,7 +67,7 @@
       });
 
       formatter = forAllSystems (system: 
-        nixpkgs.legacyPackages.${system}.nixfmt
+        nixpkgs.legacyPackages.${system}.nixfmt-tree
       );
 
       nixosConfigurations = import ./hosts { 
