@@ -16,7 +16,7 @@
       };
       rerere = {
         enable = true;
-        rerere.autoUpdate = true;
+        autoUpdate = true;
       };
       user = {
         email = "mateushmdiniz@gmail.com";
