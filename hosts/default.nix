@@ -1,6 +1,7 @@
-{ nixpkgs, self, ... } @ inputs: 
+{ configModules, inputs, myLib }: 
 let
-  inherit (self) configModules myLib;
+  inherit (inputs) nixpkgs;
+
   mkHost = name: system:
     nixpkgs.lib.nixosSystem {
       modules = [
