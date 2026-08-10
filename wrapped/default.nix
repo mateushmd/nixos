@@ -13,7 +13,7 @@ in
   options.custom.wrapped = lib.mkOption {
     type = lib.types.lazyAttrsOf lib.types.raw;
     default = wrappedModules;
-    readOnly = true;
+    readOnly = false;
     description = ''
       Attrset of pre-applied wrapped modules. 
       Use `.wrapper` to get the built package, or `.apply { ... }` to customize it further before getting `.wrapper`.
