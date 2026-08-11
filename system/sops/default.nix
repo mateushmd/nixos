@@ -15,8 +15,12 @@ in
     defaultSopsFormat = "yaml";
     age.keyFile = ageKeyFile;
 
-    secrets."${hostName}/user-password" = {
-      neededForUsers = true;
+    secrets = {
+      "${hostName}/user-password" = {
+        neededForUsers = true;
+      };
+
+      wifi-env = {};
     };
   };
 }

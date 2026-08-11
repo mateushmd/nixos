@@ -61,8 +61,10 @@ in
       };
     };
 
-    laptop.enable = mkEnableOption "Laptop-specific power and hardware
-      settings";
+    laptop.enable = mkEnableOption 
+      "Laptop-specific power and hardware settings";
+
+    wifi.enable = mkEnableOption "Whether to enable WiFi profiles";
 
     bluetooth.enable = mkEnableOption "Bluetooth support";
 
