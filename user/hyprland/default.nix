@@ -12,7 +12,15 @@ in
         rofi;
     } ++ [
       wrapped.hyprland.wrapper
-      wrapped.hyprpaper.wrapper
+      (wrapped.hyprpaper.apply {
+        "hyprpaper.conf".content = ''
+          wallpaper {
+              monitor =
+              path = ~/repos/wallpapers/1.png
+              fit_mode = cover
+          }
+        '';
+      }).wrapper
       wrapped.hypridle.wrapper
       wrapped.hyprlock.wrapper
       wrapped.waybar.wrapper
