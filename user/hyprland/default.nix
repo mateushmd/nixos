@@ -2,7 +2,7 @@
 let
   inherit (lib) mkIf;
 
-  waybar-reloader = pkgs.writeShellBinScript "waybar-reloader" ''
+  waybar-reloader = pkgs.writeShellScriptBin "waybar-reloader" ''
     while true; do
       ${pkgs.inotify-tools}/bin/inotifywait -q -e create,modify ./../../wrapped/waybar
       ${pkgs.procps}/bin/pkill -USR2 waybar
