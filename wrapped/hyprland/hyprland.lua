@@ -192,7 +192,7 @@ for i = 1, 10 do
     hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
-hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magc"))
+hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- hl.bind(mainMod .. " + mouse_down", hl.dsp.workspace.move({ workspace = "e+1" }))
@@ -215,7 +215,6 @@ hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = tr
 
 hl.config({
     decoration = {
-        rounding = 10,
         shadow = {
             color = "#1a1a1aee"
         },
@@ -231,13 +230,12 @@ hl.config({
         col = {
             active_border = {
                 colors = {
-                    "#33ccffee",
-                    "#00ff99ee"
-
+                    "#ea5c1f",
+                    "#4d1e0a"
                 },
                 angle = 45
             },
-            inactive_border = "#595959aa"
+            inactive_border = "#332e2c"
         },
     },
     input = {
