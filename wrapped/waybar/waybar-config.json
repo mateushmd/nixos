@@ -11,23 +11,23 @@
         "format": "{icon}",
         "format-icons": {
             "active": "[*]",
-            "default": "[ ]"
-        }
+            "default": "[ ]",
+        },
     },
     "clock": {
-        "format-alt": "{:%a, %d. %b  %H:%M}"
+        "format-alt": "{:%a, %d. %b  %H:%M}",
     },
     "pulseaudio": {
         "format": "[vol: {volume}%]",
         "format-muted": "[vol: muted]",
-        "on-click": "pavucontrol"
+        "on-click": "pavucontrol",
+        "tooltip": false,
     },
     "bluetooth": {
         "format-on": "[bt: on]",
         "format-off": "[bt: off]", 
         "format-connected":"[bt: {device_enumerate}]",
         "on-click": "blueman-manager",
-        "tooltip-format-connected":"{device_enumerate}"
     },
     "network": {
         "format-wifi": "[net: wifi]",
@@ -35,9 +35,9 @@
         "format-disconected": "[net: none]",
         "interval": 5,
         "on-click": "kitty --class \"nmtui\" nmtui",
-        "tooltip-format": "{essid} ({signalStrength}%)"
+        "tooltip": false,
     },
     "battery": {
-        "format": "[bat: {capacity}%]",
+        "format": "[pow: {capacity}%]",
     }
 }
