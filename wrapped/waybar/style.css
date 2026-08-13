@@ -5,7 +5,7 @@
 @define-color text-warning #ff237f;
 @define-color text-charging #9df260;
 
-@define-color background rgba(0, 0, 0, 0.6);
+@define-color background rgba(0, 0, 0, 0.45);
 
 * {
     font-family: "jetbrainsmono";
