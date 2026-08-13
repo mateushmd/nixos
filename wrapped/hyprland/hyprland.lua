@@ -181,10 +181,15 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 
-hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
+
+hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.resize({ x = 0, y = -40, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.resize({ x = -40, y = 0, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.resize({ x = 0, y = 40, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.resize({ x = 40, y = 0, relative = true }), { repeating = true })
 
 for i = 1, 10 do
     local key = i % 10
@@ -194,9 +199,6 @@ end
 
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
-
--- hl.bind(mainMod .. " + mouse_down", hl.dsp.workspace.move({ workspace = "e+1" }))
--- hl.bind(mainMod .. " + mouse_up", hl.dsp.workspace.move({ workspace = "e-1" }))
 
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
@@ -220,7 +222,8 @@ hl.config({
         },
         blur = {
             size = 3,
-        }
+        },
+        rounding = 6
     },
     dwindle = {
         preserve_split = true
@@ -237,6 +240,13 @@ hl.config({
             },
             inactive_border = "#332e2c"
         },
+        gaps_in = 5,
+        gaps_out = {
+            top = 0,
+            right = 10,
+            bottom = 10,
+            left = 10
+        }
     },
     input = {
         kb_layout = "br",
@@ -310,7 +320,14 @@ hl.window_rule({
     float = true,
 })
 
+for i = 1, 5 do
+    hl.workspace_rule({
+        workspace = tostring(i),
+        persistent = true
+    })
+end
+
 hl.layer_rule({
     match = { namespace = "waybar" },
-    blur = true
+    blur = false
 })

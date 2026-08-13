@@ -1,46 +1,43 @@
 {
     "layer": "top",
-
+    "margin-top": 5,
+    "margin-left": 10,
+    "margin-right": 10,
+    "margin-bottom": 5,
     "modules-left": ["hyprland/workspaces", "hyprland/mode"],
     "modules-center": ["clock"],
     "modules-right": ["pulseaudio", "bluetooth", "network", "battery"],
     "hyprland/workspaces": {
-        "format": "{name}",
+        "format": "{icon}",
+        "format-icons": {
+            "active": "[*]",
+            "default": "[ ]"
+        }
     },
     "clock": {
         "format-alt": "{:%a, %d. %b  %H:%M}"
     },
     "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": "",
-        "format-icons": {
-            "default": ["", "", " "]
-        },
+        "format": "[vol: {volume}%]",
+        "format-muted": "[vol: muted]",
         "on-click": "pavucontrol"
     },
     "bluetooth": {
-        "format": "󰂲",
-        "format-on": "{icon}",
-        "format-off": "{icon}", 
-        "format-connected":"{icon}",
-        "format-icons":{
-            "on":"󰂯",
-            "off": "󰂲",
-            "connected": "󰂱",
-        },
+        "format-on": "[bt: on]",
+        "format-off": "[bt: off]", 
+        "format-connected":"[bt: {device_enumerate}]",
         "on-click": "blueman-manager",
         "tooltip-format-connected":"{device_enumerate}"
     },
     "network": {
-        "format-wifi": "󰖩",
-        "format-ethernet": "󰈀",
-        "format-disconected": "󱚵",
-        "tooltip-format": "{essid} ({signalStrength}%)",
+        "format-wifi": "[net: wifi]",
+        "format-ethernet": "[net: eth]",
+        "format-disconected": "[net: none]",
         "interval": 5,
-        "on-click": "kitty --class \"nmtui\" nmtui"
+        "on-click": "kitty --class \"nmtui\" nmtui",
+        "tooltip-format": "{essid} ({signalStrength}%)"
     },
     "battery": {
-        "format": "{capacity}% {icon}",
-        "format-icons": ["", "", "", "", ""]
+        "format": "[bat: {capacity}%]",
     }
 }
