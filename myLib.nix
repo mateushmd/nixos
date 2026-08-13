@@ -1,4 +1,4 @@
-pkgs:
+{ pkgs }:
 let
   inherit (pkgs) lib;
 in
@@ -16,4 +16,25 @@ in
     files = lib.filterAttrs (_: type: type == "regular") entries;
   in
     lib.mapAttrsToList (name: _: path + "/${name}") files;
+
+  removeAttrsRec = attrSet: attrs:
+  let
+    parsedPaths = builtins.map (lib.splitString ".") attrs;
+
+    removePath = path: set:
+      if path == [] || !builtins.isAttrs set then 
+        set
+      else
+        let
+          head = builtins.head path;
+          tail = builtins.tail path;
+        in
+          if tail == [] then
+            builtins.removeAttrs set [ head ]
+          else if builtins.hasAttr head set then
+            set // { ${head} = removePath tail set.${head}; }
+          else
+            set;
+  in
+  builtins.foldl' (acc: path: removePath path acc) attrSet parsedPaths;
 }
