@@ -1,13 +1,7 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, ... }:
 let
   inherit (lib) mkIf;
 
-  waybar-reloader = pkgs.writeShellScriptBin "waybar-reloader" ''
-    while true; do
-      ${pkgs.inotify-tools}/bin/inotifywait -q -e create,modify ./../../wrapped/waybar
-      ${pkgs.procps}/bin/pkill -USR2 waybar
-    done
-  '';
 
   cfg = config.custom.desktop.hyprland;
   wrapped = config.custom.wrapped;
@@ -35,7 +29,6 @@ in
       wrapped.hypridle.wrapper
       wrapped.hyprlock.wrapper
       wrapped.waybar.wrapper
-      waybar-reloader
     ];
 
     programs.uwsm.waylandCompositors.hyprland = { 

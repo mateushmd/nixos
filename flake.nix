@@ -29,6 +29,7 @@
         system = import ./system;
         user = import ./user;
         wrapped = import ./wrapped;
+        scripts = import ./scripts;
       };
 
       forAllSystems = nixpkgs.lib.genAttrs [
