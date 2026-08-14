@@ -23,7 +23,7 @@
   outputs =
     { nixpkgs, ... }@inputs:
     let
-      myLib = import ./myLib.nix { inherit nixpkgs; };
+      myLib = import ./myLib.nix { pkgs = nixpkgs; };
 
       configModules = {
         system = import ./system;
