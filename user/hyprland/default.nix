@@ -12,7 +12,8 @@ in
       inherit (pkgs)
         rofi
         brightnessctl
-        playerctl;
+        playerctl
+        pavucontrol;
     } ++ [
       wrapped.hyprland.wrapper
       (wrapped.hyprpaper.apply {

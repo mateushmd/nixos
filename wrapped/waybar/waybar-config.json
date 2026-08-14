@@ -32,11 +32,9 @@
         "on-click": "blueman-manager",
     },
     "network": {
-        "format": "[net: {status}]",
         "format-wifi": "[net: wifi]",
         "format-ethernet": "[net: eth]",
         "format-disconected": "[net: none]",
-        "format-disabled": "[net: off]",
         "interval": 5,
         "on-click": "kitty --class \"nmtui\" nmtui",
         "tooltip": false,
