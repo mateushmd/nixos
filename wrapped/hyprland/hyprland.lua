@@ -216,6 +216,9 @@ hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
 hl.config({
+    cursor = {
+        no_warps = true,
+    },
     decoration = {
         shadow = {
             color = "#1a1a1aee"
@@ -253,7 +256,8 @@ hl.config({
         kb_variant = "abnt2",
         touchpad = {
             natural_scroll = true
-        }
+        },
+        follow_mouse = 0,
     },
     master = {
         new_status = "master"
@@ -276,6 +280,7 @@ hl.device({
 
 hl.env("XCURSOR_SIZE", 24)
 hl.env("HYPRCURSOR_SIZE", 24)
+hl.env("XDG_CURRENT_DESKTOP", "hyprland-wrapped")
 
 hl.gesture({
     fingers = 3,
