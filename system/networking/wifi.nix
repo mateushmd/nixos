@@ -1,4 +1,4 @@
-{ lib }:
+{ lib, myLib }:
 let
   mkWifiProfile = { 
     id,
@@ -22,8 +22,6 @@ let
       addr-gen-mode = "default";
       method = "auto";
     };
-
-    proxy = { };
 
     wifi = {
       inherit ssid;
@@ -56,13 +54,13 @@ in
     psk = "$WIFI_PSK_PHONE";
   };
 
-  puc = lib.recursiveUpdate (removeAttrs (mkWifiProfile {
+  puc = lib.recursiveUpdate (myLib.removeAttrsRec (mkWifiProfile {
     id = "puc";
     ssid = "PUCMinas";
     uuid = "08949d9c-2182-4bc8-8ac7-9ed55133b928";
-  }) ["wifi-security"]) {
+  }) ["wifi-security" "connection.interface-name"]) {
     "802-1x" = {
-      eap = "peap;";
+      eap = "peap";
       identity = "880541@pucminas.br";
       password-flags = "1";
       phase2-auth = "mschapv2";
@@ -81,9 +79,9 @@ in
     id = "puc-eduroam";
     ssid = "eduroam";
     uuid = "ac653a5c-a178-4ea2-8b0c-4384115d5700";
-  }) ["wifi-security"]) {
+  }) ["wifi-security" "connection.interface-name"]) {
     "802-1x" = {
-      eap = "peap;";
+      eap = "peap";
       identity = "880541@pucminas.br";
       password-flags = "1";
       phase2-auth = "mschapv2";

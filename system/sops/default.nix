@@ -20,7 +20,9 @@ in
         neededForUsers = true;
       };
 
-      wifi-env = {};
+      wifi-env = {
+        mode = "0600";
+      };
     };
   };
 }
