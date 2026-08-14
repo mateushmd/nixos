@@ -13,7 +13,7 @@ in
       
       # cli tools
       libsecret 
-      antigravity-cli
+      # antigravity-cli
       zip
       unzip
       fzf

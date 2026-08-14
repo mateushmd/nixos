@@ -2,7 +2,7 @@
   description = "Was it really worth it?";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
     wrappers = { 
       url = "github:lassulus/wrappers";
