@@ -10,6 +10,7 @@ let
           nixpkgs.hostPlatform = system;
         }
         ./${name}
+        ./options.nix
       ] ++ builtins.attrValues configModules;
 
       specialArgs = {

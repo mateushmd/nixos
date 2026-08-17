@@ -2,7 +2,6 @@
 let
   inherit (lib) mkIf;
 
-
   cfg = config.custom.desktop.hyprland;
   wrapped = config.custom.wrapped;
 in

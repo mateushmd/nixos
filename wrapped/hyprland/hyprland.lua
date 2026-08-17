@@ -280,7 +280,7 @@ hl.device({
 
 hl.env("XCURSOR_SIZE", 24)
 hl.env("HYPRCURSOR_SIZE", 24)
-hl.env("XDG_CURRENT_DESKTOP", "hyprland-wrapped")
+hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 
 hl.gesture({
     fingers = 3,
@@ -288,12 +288,6 @@ hl.gesture({
     action = "workspace"
 })
 
-hl.monitor({
-    output = "eDP-1",
-    mode = "1920x1080@120",
-    position = "0x0",
-    scale = 1
-})
 
 hl.on("hyprland.start", function ()
     hl.exec_cmd("waybar & hyprpaper")
