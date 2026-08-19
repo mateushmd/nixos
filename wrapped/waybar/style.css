@@ -40,10 +40,6 @@
     color: @text-contrast;
 }
 
-#bluetooth.on {
-    color: @text-contrast;
-}
-
 #battery.charging {
     color: @text-charging;
 }
