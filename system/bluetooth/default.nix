@@ -23,10 +23,6 @@ in
         "bluez5.roles" = [ 
           "a2dp_sink" 
           "a2dp_source" 
-          "hsp_hs" 
-          "hsp_ag" 
-          "hfp_hf" 
-          "hfp_ag" 
         ];
         "bluez5.autoswitch-profile" = false;
       };
