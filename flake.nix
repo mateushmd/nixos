@@ -9,6 +9,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
     nixvim = {
       url = "github:mateushmd/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,7 +23,7 @@
   };
 
   outputs =
-    { nixpkgs, ... }@inputs:
+    { nix-flatpak, nixpkgs, ... }@inputs:
     let
       myLib = import ./myLib.nix { pkgs = nixpkgs; };
 
@@ -30,6 +32,7 @@
         user = import ./user;
         wrapped = import ./wrapped;
         scripts = import ./scripts;
+        nix-flatpak = nix-flatpak.nixosModules.nix-flatpak;
       };
 
       forAllSystems = nixpkgs.lib.genAttrs [
