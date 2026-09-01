@@ -6,9 +6,9 @@
       if status is-interactive
         set -g fish_greeting ""
 
-        alias rebuild-system="sudo nixos-rebuild switch --flake /home/mateus/repos/nixos#phalanx"
-        alias check-system="sudo nixos-rebuild dry-activate --flake /home/mateus/repos/nixos#phalanx"
-        alias test-system="sudo nixos-rebuild test --flake /home/mateus/repos/nixos#phalanx"
+        alias rebuild-system="sudo nixos-rebuild switch --flake /home/mateus/repos/nixos"
+        alias check-system="sudo nixos-rebuild dry-activate --flake /home/mateus/repos/nixos"
+        alias test-system="sudo nixos-rebuild test --flake /home/mateus/repos/nixos"
         alias ls="eza --icons --group-directories-first"
         alias lt="ls --tree"
 
