@@ -12,7 +12,9 @@ in
         rofi
         brightnessctl
         playerctl
-        pavucontrol;
+        pavucontrol
+        mako
+        libnotify;
     } ++ [
       wrapped.hyprland.wrapper
       (wrapped.hyprpaper.apply {
