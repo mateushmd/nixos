@@ -4,6 +4,8 @@
     ./hardware.nix
   ];
 
+  system.stateVersion = "24.11";
+
   custom = {
     desktop = {
       hyprland.enable = true;
