@@ -19,6 +19,5 @@
     };
 
     nano.enable = false;
-    sops.enable = false;
   };
 }
