@@ -10,8 +10,7 @@ in
       mateus = {
         isNormalUser = true;
         description = "mateus";
-        # hashedPasswordFile = mkIf config.custom.sops.enable config.sops.secrets."${hostName}/user-password".path;
-        initialPassword = "123";
+        hashedPasswordFile = config.sops.secrets."${hostName}/user-password".path;
         shell = pkgs.fish;
         extraGroups = [
           "networkmanager"

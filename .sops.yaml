@@ -1,7 +1,9 @@
 keys:
-  - &primary age1rrt5qn8eed5scf3w8c0n4whj77g05tzmdtnxtkwr6amwuq4uk47se5tvxt
+  - &host_phalanx age1rrt5qn8eed5scf3w8c0n4whj77g05tzmdtnxtkwr6amwuq4uk47se5tvxt
+  - &host_gaius age1gxa665lh97rjt6z2p0c9vya7tyelfta606rm57f0a038s2tqedeqm2d0th
 creation_rules:
-  - path_regex: secrets/secrets.yaml$
+  - path_regex: secrets/.*\.yaml$
     key_groups:
     - age:
-      - *primary
+      - *host_phalanx
+      - *host_gaius
