@@ -61,6 +61,12 @@ in
       };
     };
 
+    sops.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Whether to enable Sops";
+    };
+
     laptop.enable = mkEnableOption 
       "Laptop-specific power and hardware settings";
 

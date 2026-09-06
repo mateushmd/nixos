@@ -1,5 +1,6 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
+  inherit (lib) mkIf;
   hostName = config.networking.hostName;
 in
 {
@@ -9,7 +10,8 @@ in
       mateus = {
         isNormalUser = true;
         description = "mateus";
-        hashedPasswordFile = config.sops.secrets."${hostName}/user-password".path;
+        # hashedPasswordFile = mkIf config.custom.sops.enable config.sops.secrets."${hostName}/user-password".path;
+        initialPassword = "123";
         shell = pkgs.fish;
         extraGroups = [
           "networkmanager"

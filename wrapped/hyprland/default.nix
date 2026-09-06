@@ -26,6 +26,8 @@ inputs.wrappers.lib.wrapModule (
 
         ${if sysConfig.networking.hostName == "phalanx" then 
           builtins.readFile ./phalanx.lua 
+        else if sysConfig.networking.hostName == "gaius" then
+          builtins.readFile ./gaius.lua
         else throw "No configuration for ${sysConfig.networking.hostName}"}
       '';
       description = "Hyprland configuration file content.";

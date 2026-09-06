@@ -20,4 +20,5 @@ let
 in
 {
   phalanx = mkHost "phalanx" "x86_64-linux";
+  gaius = mkHost "gaius" "x86_64-linux";
 }
