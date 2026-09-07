@@ -6,6 +6,8 @@
 
   system.stateVersion = "24.11";
 
+  time.timeZone = "Europe/Rome";
+
   custom = {
     desktop = {
       hyprland.enable = true;

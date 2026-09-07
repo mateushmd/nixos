@@ -1,4 +1,7 @@
-{ ... }:
+{ lib, ... }:
+let
+  inherit (lib) mkDefault;
+in
 {
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -15,5 +18,5 @@
     };
   };
 
-  time.timeZone = "America/Sao_Paulo";
+  time.timeZone = mkDefault "America/Sao_Paulo";
 }
