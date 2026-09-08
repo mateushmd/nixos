@@ -3,6 +3,14 @@ local fileManager = "dolphin"
 local menu = "rofi -show drun"
 local browser = "firefox"
 
+hl.config({
+    input = {
+        kb_layout = "br,us",
+        kb_variant = "abnt2,intl",
+        kb_options = "grp:win_space_toggle"
+    }
+})
+
 hl.curve("easeOutQuint", {
     type = "bezier",
     points = {
