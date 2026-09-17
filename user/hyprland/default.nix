@@ -4,6 +4,14 @@ let
 
   cfg = config.custom.desktop.hyprland;
   wrapped = config.custom.wrapped;
+
+  hyprland = wrapped.hyprland.apply {
+    "hyprland.lua".content = cfg.hyprlandConfig;
+  };
+
+  hyprpaper = wrapped.hyprpaper.apply {
+    "hyprpaper.conf".content = cfg.hyprpaperConfig;
+  };
 in
 {
   config = mkIf cfg.enable {
@@ -16,27 +24,15 @@ in
         mako
         libnotify;
     } ++ [
-      wrapped.hyprland.wrapper
-      (wrapped.hyprpaper.apply {
-        "hyprpaper.conf".content = ''
-          wallpaper {
-              monitor =
-              path = ~/repos/wallpapers/1.png
-              fit_mode = cover
-          }
-
-          splash = false
-        '';
-      }).wrapper
-      wrapped.hypridle.wrapper
-      wrapped.hyprlock.wrapper
+      hyprland.wrapper
+      hyprpaper.wrapper
       wrapped.waybar.wrapper
     ];
 
     programs.uwsm.waylandCompositors.hyprland = { 
       prettyName = "Hyprland";
       comment = "Hyprland compositor managed by UWSM";
-      binPath = "${wrapped.hyprland.wrapper}/bin/hyprland-wrapped";
+      binPath = "${hyprland.wrapper}/bin/hyprland-wrapped";
     };
 
     xdg.portal = {

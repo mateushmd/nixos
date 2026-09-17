@@ -1,7 +1,5 @@
-{ config, inputs, pkgs, ... }:
+{ inputs, pkgs, ... }:
 let
-  sysConfig = config;
-
   package = inputs.wrappers.lib.wrapPackage {
     inherit pkgs;
     package = pkgs.hyprland;
@@ -17,19 +15,7 @@ inputs.wrappers.lib.wrapModule (
   {
     options."${confName}" = lib.mkOption {
       type = wlib.types.file config.pkgs;
-      default.content = ''
-        ${builtins.readFile ./hyprland.lua}
-
-        ${if sysConfig.custom.laptop.enable then 
-          builtins.readFile ./laptop.lua 
-        else ""}
-
-        ${if sysConfig.networking.hostName == "phalanx" then 
-          builtins.readFile ./phalanx.lua 
-        else if sysConfig.networking.hostName == "gaius" then
-          builtins.readFile ./gaius.lua
-        else throw "No configuration for ${sysConfig.networking.hostName}"}
-      '';
+      default.content = "";
       description = "Hyprland configuration file content.";
     };
 

@@ -6,11 +6,23 @@ in
 {
   options.custom = {
     desktop = {
-      hyprland.enable = mkOption {
-        type = types.bool;
-        default = true;
-        description = "Whether to enable the Hyprland Wayland compositor and 
-          related tools.";
+      hyprland = {
+        enable = mkOption {
+          type = types.bool;
+          default = true;
+          description = "Whether to enable the Hyprland Wayland compositor and 
+            related tools.";
+        };
+
+        hyprlandConfig = mkOption {
+          type = types.str;
+          description = "The Hyprland configuration to be used";
+        };
+
+        hyprpaperConfig = mkOption {
+          type = types.str;
+          description = "The Hyprpaper configuration to be used";
+        };
       };
 
       niri.enable = mkOption {

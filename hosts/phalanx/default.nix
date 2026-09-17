@@ -10,7 +10,11 @@
 
   custom = {
     desktop = {
-      hyprland.enable = true;
+      hyprland = {
+        enable = true;
+        hyprlandConfig = builtins.readFile ./hyprland.lua;
+        hyprpaperConfig = builtins.readFile ./hyprpaper.conf;
+      };
       plasma.enable = true;
       defaultDE = "hyprland";
     };
