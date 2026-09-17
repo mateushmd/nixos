@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./hardware.nix
@@ -7,6 +7,11 @@
   system.stateVersion = "24.11";
 
   time.timeZone = "Europe/Rome";
+
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs)
+      unityhub;
+  };
 
   custom = {
     desktop = {
