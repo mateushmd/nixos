@@ -8,11 +8,6 @@
 
   time.timeZone = "Europe/Rome";
 
-  environment.systemPackages = builtins.attrValues {
-    inherit (pkgs)
-      unityhub;
-  };
-
   custom = {
     desktop = {
       hyprland = {
