@@ -22,7 +22,8 @@ in
         playerctl
         pavucontrol
         mako
-        libnotify;
+        libnotify
+        hyprshot;
     } ++ [
       hyprland.wrapper
       hyprpaper.wrapper
