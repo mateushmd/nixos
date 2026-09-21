@@ -1,7 +1,7 @@
 { pkgs, ... }: 
 {
   environment.systemPackages = [
-    pkgs.dotnet-sdk
+    pkgs.dotnetCorePackages.sdk_10_0
   ];
   
   services.flatpak.packages = [
