@@ -9,6 +9,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-claude-code.url = "github:ryoppippi/nix-claude-code";
+
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
     nixvim = {
