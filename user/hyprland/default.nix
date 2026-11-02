@@ -6,28 +6,15 @@ let
   wrapped = config.custom.wrapped;
 
   hyprland = wrapped.hyprland.apply {
-    "hyprland.lua".content = cfg.hyprlandConfig;
-  };
-
-  hyprpaper = wrapped.hyprpaper.apply {
-    "hyprpaper.conf".content = cfg.hyprpaperConfig;
+    "hyprland.lua".content = cfg.config;
   };
 in
 {
   config = mkIf cfg.enable {
-    environment.systemPackages = builtins.attrValues {
-      inherit (pkgs)
-        rofi
-        brightnessctl
-        playerctl
-        pavucontrol
-        mako
-        libnotify
-        hyprshot;
-    } ++ [
-      hyprland.wrapper
-      hyprpaper.wrapper
-      wrapped.waybar.wrapper
+    environment.systemPackages = [
+      (config.custom.wrappedd.hyprland.apply {
+        "hyprland.lua".content = cfg.config;
+      }).wrapper
     ];
 
     programs.uwsm.waylandCompositors.hyprland = { 
@@ -38,7 +25,10 @@ in
 
     xdg.portal = {
       enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      extraPortals = [ 
+        pkgs.xdg-desktop-portal-gtk 
+        pkgs.xdg-desktop-portal-hyprland
+      ];
       config = {
         common = {
           default = [ "gtk" ];

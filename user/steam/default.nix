@@ -1,15 +1,9 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (lib) mkIf mkOption types;
+  inherit (lib) mkIf;
   cfg = config.custom.gaming.steam;
 in
 { 
-  options.custom.steam.enable = mkOption {
-    type = types.bool;
-    default = true;
-    description = "Whether to enable Steam.";
-  };
-
   config = mkIf cfg.enable {
     programs.steam = {
       enable = true;

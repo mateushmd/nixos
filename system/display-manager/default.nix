@@ -10,6 +10,6 @@ in
         "hyprland-uwsm"
       else if cfg.desktop.defaultDE == "plasma" then
         "plasma"
-      else { };
+      else throw "unknown display manager session";
   };
 }

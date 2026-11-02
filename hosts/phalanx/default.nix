@@ -1,4 +1,16 @@
 { pkgs, ... }:
+let
+  hyprlandPackages = builtins.attrValues {
+    inherit (pkgs)
+      rofi
+      brightnessctl
+      playerctl
+      pavucontrol
+      mako
+      libnotify
+      hyprshot;
+  };
+in
 {
   imports = [
     ./hardware.nix
@@ -11,7 +23,7 @@
   environment.systemPackages = [
     pkgs.gamescope
     pkgs.steam-run
-  ];
+  ] ++ hyprlandPackages;
 
   environment.variables.NEWT_COLORS = "root=#FFFFFF,#000000 border=#FF00FF,#000000 window=#000000,#000000 shadow=#000000,#000000 title=#FF00FF,#000000 button=#000000,#FF00FF button_active=#000000,#FFFF00 actbutton=#FFFF00,#000000 compactbutton=#FFFF00,#000000 checkbox=#FF0000,#000000 entry=#00FF00,#000000 disentry=#000000,#000000 textbox=#00FF00,#000000 acttextbox=#FF00FF,#000000 label=#00FFFF,#000000 listbox=#00FF00,#000000 actlistbox=#FF00FF,#000000 sellistbox=#FF0000,#000000 actsellistbox=#000000,#FFFF00";
 
@@ -19,8 +31,7 @@
     desktop = {
       hyprland = {
         enable = true;
-        hyprlandConfig = builtins.readFile ./hyprland.lua;
-        hyprpaperConfig = builtins.readFile ./hyprpaper.conf;
+        config = builtins.readFile ./hyprland.lua;
       };
       plasma.enable = true;
       defaultDE = "hyprland";
@@ -31,12 +42,26 @@
       heroic.enable = true;
     };
 
+    hyprpaper = {
+      enable = true;
+      config = builtins.readFile ./hyprpaper.conf;
+    };
+
+    rootPasswordFile = "/var/lib/secrets/root";
+
     terminal = {
       wezterm.enable = true;
       kitty.enable = true;
     };
 
     laptop.enable = true;
+
+    waybar = {
+      enable = true;
+      config = builtins.readFile ./waybar/waybar-config.json;
+      style = builtins.readFile ./waybar/style.css;
+    };
+
     wifi.enable = true;
     bluetooth.enable = true;
     nano.enable = false;

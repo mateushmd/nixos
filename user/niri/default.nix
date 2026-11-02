@@ -4,6 +4,6 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = config.custom.wrapped.niri.wrapper;
+    environment.systemPackages = [ config.custom.wrapped.niri.wrapper ];
   };
 }

@@ -1,6 +1,6 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 let
-  inherit (lib) mkIf;
+  cfg = config.custom.rootPasswordFile;
   hostName = config.networking.hostName;
 in
 {
@@ -16,7 +16,7 @@ in
           "networkmanager"
           "wheel"
           "audio"
-          "libvrtd"
+          "libvirtd"
           "docker"
           "kvm"
         ];
@@ -25,13 +25,13 @@ in
       puddo = {
         isNormalUser = true;
         extraGroups = [
-          "libvrtd"
+          "libvirtd"
           "wheel"
         ];  
       };
-      root = {
-        initialPassword = "123";
-      };
+      root = if cfg != null
+        then { hashedPasswordFile = cfg; }
+        else { hashedPassword = "!"; };
     };
   };
 }

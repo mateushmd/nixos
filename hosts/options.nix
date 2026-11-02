@@ -10,18 +10,13 @@ in
         enable = mkOption {
           type = types.bool;
           default = true;
-          description = "Whether to enable the Hyprland Wayland compositor and 
-            related tools.";
+          description = "Whether to enable the Hyprland Wayland compositor.";
         };
 
-        hyprlandConfig = mkOption {
+        config = mkOption {
           type = types.str;
-          description = "The Hyprland configuration to be used";
-        };
-
-        hyprpaperConfig = mkOption {
-          type = types.str;
-          description = "The Hyprpaper configuration to be used";
+          default = "";
+          description = "The Hyprland configuration file to be used.";
         };
       };
 
@@ -55,38 +50,68 @@ in
       heroic.enable = mkOption {
         type = types.bool;
         default = false;
-        description = "Whther to enable Heroic Game Launcher.";
+        description = "Whether to enable Heroic Game Launcher.";
       };
+    };
+
+    hyprpaper = {
+      enable = mkEnableOption "Whether to enable Hyprpaper";
+      config = mkOption {
+        type = types.str;
+        default = "";
+        description = "The Hyprpaper configuration file to be used.";
+      };
+    };
+
+    rootPasswordFile = mkOption {
+      type = types.nullOr types.str;
+      default = null;
     };
 
     terminal = {
       wezterm.enable = mkOption {
         type = types.bool;
         default = false;
-        description = "Whether to enable Wezterm";
+        description = "Whether to enable Wezterm.";
       };
 
       kitty.enable = mkOption {
         type = types.bool;
         default = false;
-        description = "Whether to enable Kitty";
+        description = "Whether to enable Kitty.";
       };
     };
 
     sops.enable = mkOption {
       type = types.bool;
       default = true;
-      description = "Whether to enable Sops";
+      description = "Whether to enable Sops.";
     };
 
     laptop.enable = mkEnableOption 
-      "Laptop-specific power and hardware settings";
+      "Laptop-specific power and hardware settings.";
 
-    wifi.enable = mkEnableOption "Whether to enable WiFi profiles";
+    waybar = {
+      enable = mkEnableOption "Whether to enable Waybar.";
 
-    bluetooth.enable = mkEnableOption "Bluetooth support";
+      config = mkOption {
+        type = types.str;
+        default = "";
+        description = "The Waybar configuration file to be used.";
+      };
 
-    nano.enable = mkEnableOption "Whether to enable the nano text editor";
+      style = mkOption {
+        type = types.str;
+        default = "";
+        description = "The Waybar stylesheet file to be used.";
+      };
+    };
+
+    wifi.enable = mkEnableOption "Whether to enable WiFi profiles.";
+
+    bluetooth.enable = mkEnableOption "Bluetooth support.";
+
+    nano.enable = mkEnableOption "Whether to enable the nano text editor.";
   };
 
   config = {

@@ -33,14 +33,11 @@
         system = import ./system;
         user = import ./user;
         wrapped = import ./wrapped;
-        scripts = import ./scripts;
         nix-flatpak = nix-flatpak.nixosModules.nix-flatpak;
       };
 
       forAllSystems = nixpkgs.lib.genAttrs [
           "x86_64-linux" 
-          "aarch64-linux" 
-          "aarch64-darwin"
       ];
 
       mkHyprstubsApp = pkgs: {
@@ -59,13 +56,12 @@
               '';
             };
           in
-          "${script}/bin/gen-hypr-stubs";
+            "${script}/bin/gen-hypr-stubs";
         meta = {
           description = "Generate Lua stubs for Hyprland";
           mainProgram = "gen-hypr-stubs";
         };
       };
-
     in
     {
       apps = forAllSystems (system: {
