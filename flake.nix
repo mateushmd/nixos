@@ -27,7 +27,18 @@
   outputs =
     { nix-flatpak, nixpkgs, ... }@inputs:
     let
-      myLib = import ./myLib.nix { pkgs = nixpkgs; };
+      myLib = 
+      let
+        inherit (nixpkgs) lib;
+      in
+      {
+        scanDirs = path:
+        let
+          entries = builtins.readDir path;
+          dirs = lib.filterAttrs (name: type: type == "directory") entries;
+        in
+          lib.mapAttrsToList (name: _: path + "/${name}") dirs;
+      };
 
       configModules = {
         system = import ./system;

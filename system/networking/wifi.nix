@@ -1,4 +1,4 @@
-{ lib, myLib }:
+{ lib, ... }:
 let
   mkWifiProfile = { 
     id,
@@ -39,6 +39,27 @@ let
       psk-flags = "1";
     });
   };
+
+  removeAttrsRec = attrSet: attrs:
+  let
+    parsedPaths = map (lib.splitString ".") attrs;
+
+    removePath = path: set:
+      if path == [] || !builtins.isAttrs set then 
+        set
+      else
+        let
+          head = builtins.head path;
+          tail = builtins.tail path;
+        in
+          if tail == [] then
+            removeAttrs set [ head ]
+          else if builtins.hasAttr head set then
+            set // { ${head} = removePath tail set.${head}; }
+          else
+            set;
+  in
+  builtins.foldl' (acc: path: removePath path acc) attrSet parsedPaths;
 in
 {
   home = mkWifiProfile {
@@ -57,7 +78,7 @@ in
     psk = "$WIFI_PHONE_PSK";
   };
 
-  puc = lib.recursiveUpdate (myLib.removeAttrsRec (mkWifiProfile {
+  puc = lib.recursiveUpdate (removeAttrsRec (mkWifiProfile {
     id = "puc";
     ssid = "PUCMinas";
     uuid = "08949d9c-2182-4bc8-8ac7-9ed55133b928";
@@ -77,7 +98,7 @@ in
     };
   };
 
-  puc-eduroam = lib.recursiveUpdate (myLib.removeAttrsRec (mkWifiProfile {
+  puc-eduroam = lib.recursiveUpdate (removeAttrsRec (mkWifiProfile {
     id = "puc-eduroam";
     ssid = "eduroam";
     uuid = "ac653a5c-a178-4ea2-8b0c-4384115d5700";
