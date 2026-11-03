@@ -47,19 +47,29 @@ in
       config = builtins.readFile ./hyprpaper.conf;
     };
 
-    rootPasswordFile = "/var/lib/secrets/root";
-
-    terminal = {
-      wezterm.enable = true;
-      kitty.enable = true;
+    kitty = {
+      enable = true;
+      config = ''
+        ${builtins.readFile ./kitty/tokyo-night.conf}
+        ${builtins.readFile ./kitty/kitty.conf}
+      '';
     };
 
+    rootPasswordFile = "/var/lib/secrets/root";
+
     laptop.enable = true;
+
+    unity.enable = true;
 
     waybar = {
       enable = true;
       config = builtins.readFile ./waybar/waybar-config.json;
       style = builtins.readFile ./waybar/style.css;
+    };
+
+    wezterm = {
+      enable = true;
+      config = builtins.readFile ./wezterm.lua;
     };
 
     wifi.enable = true;

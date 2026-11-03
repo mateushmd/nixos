@@ -8,13 +8,11 @@ inputs.wrappers.lib.wrapModule (
   {
     options."${confName}" = lib.mkOption {
       type = wlib.types.file config.pkgs;
-      default.content = "";
       description = "Waybar configuration file content.";
     };
 
     options."${styName}" = lib.mkOption {
       type = wlib.types.file config.pkgs;
-      default.content = "";
       description = "Waybar style file content";
     };
 

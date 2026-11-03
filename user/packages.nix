@@ -29,7 +29,6 @@ in
       # apps
       discord
       obsidian
-      anydesk
       vlc
       aseprite
       audacity
@@ -39,7 +38,5 @@ in
   } ++ [
     inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.kdePackages.kcalc
-  ] ++ optional cfg.gaming.heroic.enable pkgs.heroic
-  ++ optional cfg.terminal.wezterm.enable cfg.wrapped.wezterm.wrapper
-  ++ optional cfg.terminal.kitty.enable cfg.wrapped.kitty.wrapper;
+  ] ++ optional cfg.gaming.heroic.enable pkgs.heroic;
 }

@@ -7,7 +7,6 @@ inputs.wrappers.lib.wrapModule (
   {
     options."${confName}" = lib.mkOption {
       type = wlib.types.file config.pkgs;
-      default.content = "";
       description = "Hyprpaper configuration file content.";
     };
 

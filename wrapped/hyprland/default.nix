@@ -15,7 +15,6 @@ inputs.wrappers.lib.wrapModule (
   {
     options."${confName}" = lib.mkOption {
       type = wlib.types.file config.pkgs;
-      default.content = "";
       description = "Hyprland configuration file content.";
     };
 

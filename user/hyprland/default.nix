@@ -3,24 +3,21 @@ let
   inherit (lib) mkIf;
 
   cfg = config.custom.desktop.hyprland;
-  wrapped = config.custom.wrapped;
 
-  hyprland = wrapped.hyprland.apply {
+  hyprland = (config.custom.wrapped.hyprland.apply {
     "hyprland.lua".content = cfg.config;
-  };
+  }).wrapper;
 in
 {
   config = mkIf cfg.enable {
     environment.systemPackages = [
-      (config.custom.wrappedd.hyprland.apply {
-        "hyprland.lua".content = cfg.config;
-      }).wrapper
+      hyprland
     ];
 
     programs.uwsm.waylandCompositors.hyprland = { 
       prettyName = "Hyprland";
       comment = "Hyprland compositor managed by UWSM";
-      binPath = "${hyprland.wrapper}/bin/hyprland-wrapped";
+      binPath = "${hyprland}/bin/hyprland-wrapped";
     };
 
     xdg.portal = {

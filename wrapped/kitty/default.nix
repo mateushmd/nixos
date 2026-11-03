@@ -7,10 +7,6 @@ inputs.wrappers.lib.wrapModule (
   {
     options."${confName}" = lib.mkOption {
       type = wlib.types.file config.pkgs;
-      default.content = ''
-        ${builtins.readFile ./tokyo-night.conf}
-        ${builtins.readFile ./kitty.conf}
-      '';
       description = "Kitty configuration file content.";
     };
 
