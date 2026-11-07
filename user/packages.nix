@@ -34,9 +34,11 @@ in
       audacity
       gimp3-with-plugins
       gcolor3
-      meshlab;
+      meshlab
+      zathura;
   } ++ [
     inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.kdePackages.kcalc
+    pkgs.zathuraPkgs.zathura_pdf_poppler
   ] ++ optional cfg.gaming.heroic.enable pkgs.heroic;
 }
