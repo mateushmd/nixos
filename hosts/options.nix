@@ -1,4 +1,4 @@
-{ lib, config, ... }: 
+{ lib, config, pkgs, ... }: 
 let
   inherit (lib) mkOption mkEnableOption mkIf types;
   cfg = config.custom;
@@ -23,6 +23,21 @@ in
       hyprland = mkWrapped {
         enableDescription = "Whether to enable the Hyprland Wayland compositor.";
         configDescription = "The Hyprland configuration file to be used.";
+      } // {
+        extraPackages = mkOption {
+          type = types.listOf types.package;
+          default = builtins.attrValues {
+            inherit (pkgs)
+              rofi
+              brightnessctl
+              playerctl
+              pavucontrol
+              mako
+              libnotify
+              hyprshot;
+          };
+          description = "Companion packages installed with Hyprland. Setting this replaces the default bundle.";
+        };
       };
 
       niri.enable = mkEnableOptionWithDefault false "Whether to enable the Niri Wayland compositor.";
@@ -60,8 +75,6 @@ in
 
     laptop.enable = mkEnableOption 
       "Laptop-specific power and hardware settings.";
-
-    unity.enable = mkEnableOptionWithDefault false "Whether to enable Unity and associated packages";
 
     waybar = mkWrapped {
       enableDescription = "Whether to enable Waybar.";

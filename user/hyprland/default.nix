@@ -12,7 +12,7 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = [
       hyprland
-    ];
+    ] ++ cfg.extraPackages;
 
     programs.uwsm.waylandCompositors.hyprland = { 
       prettyName = "Hyprland";
